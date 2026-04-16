@@ -26,12 +26,15 @@ def Main():
 
     #Botão para adcionar nome a lista
     button = tk.Button(app, text="Adicionar", command=lambda:AdicionarNome(entrada_nome, listbox))
-    button.pack()
+    button.pack(pady=10)
 
     # Box onde a lista aparece 
     # label_lista = tk.Label(app, text="Lista: \n")
     listbox = tk.Listbox(app, width=30, height=10)
-    listbox.pack(pady=10)
+    listbox.pack(pady=5)
+
+    #Adicionar tembem ao selecionar 'Enter'
+    app.bind('<Return>', lambda event: AdicionarNome(entrada_nome, listbox))
 
     app.mainloop()
     
