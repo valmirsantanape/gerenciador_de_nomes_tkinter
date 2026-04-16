@@ -8,7 +8,14 @@ def AdicionarNome(entrada, listbox):
 
         listbox.insert(tk.END, novo_nome)
         entrada.delete(0, tk.END)
-        
+
+def removeSelecionado(listbox):
+    selecao = listbox.curselection()
+    if selecao:
+        listbox.delete(selecao)
+
+def LimparLista(listbox):
+    listbox.delete(0, tk.END)
 
 def Main():
     
@@ -25,8 +32,16 @@ def Main():
     entrada_nome.pack(pady=5)
 
     #Botão para adcionar nome a lista
-    button = tk.Button(app, text="Adicionar", command=lambda:AdicionarNome(entrada_nome, listbox))
-    button.pack(pady=10)
+    buttonAdd = tk.Button(app, text="Adicionar", command=lambda:AdicionarNome(entrada_nome, listbox))
+    buttonAdd.pack(pady=10)
+
+    buttonRemove = tk.Button(app, text="Remover", command=lambda:removeSelecionado(listbox))
+    buttonRemove.pack()
+
+
+    buttonClean = tk.Button(app, text="Limpar Lista", command=lambda:LimparLista(listbox))
+    buttonClean.pack(pady=10)
+
 
     # Box onde a lista aparece 
     # label_lista = tk.Label(app, text="Lista: \n")
