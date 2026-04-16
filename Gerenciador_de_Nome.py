@@ -2,13 +2,13 @@ import tkinter as tk
 
 lista_nomes = []
 
-def AdicionarNome(entrada, label):
+def AdicionarNome(entrada, listbox):
     novo_nome = entrada.get().strip()
-    entrada.delete(0, tk.END)
     if novo_nome:
-        lista_nomes.append(novo_nome)
-        texto_exibicao = "\n".join(lista_nomes)
-        label.config(text=f"Lista: \n{texto_exibicao}")
+
+        listbox.insert(tk.END, novo_nome)
+        entrada.delete(0, tk.END)
+        
 
 def Main():
     
@@ -25,12 +25,13 @@ def Main():
     entrada_nome.pack(pady=5)
 
     #Botão para adcionar nome a lista
-    button = tk.Button(app, text="Adicionar", command=lambda:AdicionarNome(entrada_nome, label_lista))
+    button = tk.Button(app, text="Adicionar", command=lambda:AdicionarNome(entrada_nome, listbox))
     button.pack()
 
-    # Label onde a lista aparece 
-    label_lista = tk.Label(app, text="Lista: \n")
-    label_lista.pack(pady=10)
+    # Box onde a lista aparece 
+    # label_lista = tk.Label(app, text="Lista: \n")
+    listbox = tk.Listbox(app, width=30, height=10)
+    listbox.pack(pady=10)
 
     app.mainloop()
     
